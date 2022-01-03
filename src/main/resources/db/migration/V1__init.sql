@@ -45,18 +45,18 @@ values (1, 1),
 
 create table orders (
     id              bigserial primary key,
-    user_id         bigserial references users (id),
-    total_price     int,
+    user_id         bigserial not null references users (id),
+    total_price     int not null,
     address         varchar(255),
     phone           varchar(255)
 )
 
 create table order_items (
     id                      bigserial primary key,
-    product_id              bigserial  references products (id),
-    user_id                 bigserial  references users (id),
-    order_id                bigserial  references orders (id),
-    quantity                int,
-    price_per_product       int,
-    price                   int
+    product_id              bigserial not null references products (id),
+    user_id                 bigserial not null references users (id),
+    order_id                bigserial not null references orders (id),
+    quantity                int not null,
+    price_per_product       int not null,
+    price                   int not null
 )
